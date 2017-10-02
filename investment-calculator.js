@@ -1,18 +1,18 @@
 
 var investmentCalculator = (function() {
   // Inputs
-  var calculator = document.getElementById('calculator');
-  var numShares = document.getElementById('num-shares');
-  var purchasePrice = document.getElementById('purchase-price');
-  var sellPrice = document.getElementById('sell-price');
-  var buyCommission = document.getElementById('buy-commission');
-  var sellCommission = document.getElementById('sell-commission');
-  var calculate = document.getElementById('calculate');
+  var calculator = document.getElementById('investment-calculator');
+  var numShares = document.querySelector('#investment-calculator #num-shares');
+  var purchasePrice = document.querySelector('#investment-calculator #purchase-price');
+  var sellPrice = document.querySelector('#investment-calculator #sell-price');
+  var buyCommission = document.querySelector('#investment-calculator #buy-commission');
+  var sellCommission = document.querySelector('#investment-calculator #sell-commission');
+  var calculate = document.querySelector('#investment-calculator #calculate');
   // Outputs
-  var error = document.getElementById('error');
-  var purchasedFor = document.getElementById('purchased-for');
-  var soldFor = document.getElementById('sold-for');
-  var result = document.getElementById('result');
+  var error = document.querySelector('#investment-calculator #error');
+  var purchasedFor = document.querySelector('#investment-calculator #purchased-for');
+  var soldFor = document.querySelector('#investment-calculator #sold-for');
+  var result = document.querySelector('#investment-calculator #result');
   // Vars for calculation
   var s, pp, sp, bc, sc, pf, sf, totalResult;
 
@@ -50,9 +50,8 @@ var investmentCalculator = (function() {
 
     var validateInputs = (function() {
       var re = /^\d+(?:\.\d{1,2})?$/; // Regex to check for valid number
-      var reDecPercent = /^(\.\d{1,2})?$/; // Regex for decimal percentage
       var good = 0; // Counter for validated inputs
-      var inputs = document.querySelectorAll('#calculator input[type=text]');
+      var inputs = document.querySelectorAll('#investment-calculator input[type=text]');
 
       // Loop text inputs, compare with regex, update status(good)
       for (var i = 0; i < inputs.length; i++) {
@@ -60,6 +59,7 @@ var investmentCalculator = (function() {
           good++;
           if (inputs[i].style.borderColor == 'red') {
             inputs[i].style.borderColor = 'initial';
+            error.innerHTML = '&nbsp;';
           }
         } else {
           good--;
